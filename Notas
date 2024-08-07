@@ -1,5 +1,3 @@
-data de estudio github de estudio.txt
-
 Notas de curso de Git
 
 Section 1
@@ -41,6 +39,9 @@ git commit -m “Initial commit” -> la -m es para añadir un comentario, en es
 
 git log -> muestra la lista de commits del proyecto 
 muestra el hash (key), la branch, fecha, el autor y el comentario.
+
+git revert <commit hash> 
+hace un rollback de ese cambio realizado, como nuevo commit. Nos tira un texto nuevo, salgo con :q
 
 Branches
 Any commit on a branch can be the origin commit where a new branch can be initiated at that point
@@ -106,3 +107,6 @@ git clone <repository link> new Repository
 
 Con esto puedo hacer un pull para bajar los datos a un nuevo repositorio, trabajar en el repositorio y luego hacer un push. Volver al repositorio anterior en mi pc y hacer un pull, descargando la data que subi desde el otro repositorio local
 
+—-
+
+Con el archibo .gitignore puedo filtrar que subir
