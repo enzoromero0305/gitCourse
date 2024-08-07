@@ -1,0 +1,108 @@
+data de estudio github de estudio.txt
+
+Notas de curso de Git
+
+Section 1
+
+Git clone <link> 
+Creates a local project based on the link provided (baja el proyecto a la pc)
+
+De aquí puedo posicionarme on cd <nombre del repositorio>
+
+Git remote -v
+Displays the link to the remote repository
+
+A partir de aquí puedo usar:  						push para subir mis archivos al repositorio en git
+						fetch para bajar archivos del repositorio a mi repositorio local
+
+Section 2
+
+Como obtener ayuda con comandos:
+git <command> -h
+ejemplos:
+git clone -h
+git remote -h
+
+Con los comandos en Git puedo añadir los cambios a mi proyecto mediante Commits
+Los commits son a set of saved repository changes
+Cada commit se guarda y nunca se pierde y tiene un hash key propio
+A commit is always the same, no importa el environment
+
+git add . -> añade todo los archivos al cambio que hicimos al staging area
+el punto al final tells git to add all the files that have changed, pero podemos especificar que archivo en especial queremos incluir en el commit, por ejemplo: git add file1.txt file3.txt file5.txt
+
+git reset <filenames>
+removes one or more files from staging, es decir, si querés sacar alguno de los archivos marcados para el commit con el comando de arriba
+
+
+git status ->  print repository status, es decir, para ver el estado de los archivos que están y no están marcados para el commit
+
+git commit -m “Initial commit” -> la -m es para añadir un comentario, en este caso para mencionar que es el primero
+
+git log -> muestra la lista de commits del proyecto 
+muestra el hash (key), la branch, fecha, el autor y el comentario.
+
+Branches
+Any commit on a branch can be the origin commit where a new branch can be initiated at that point
+Any commit on master will not be seen on the second branch and any commit on the second branch will not affect master
+We can merge two branches effectively bringing all the commits on one branch into another branch
+
+git branch
+displays available branches
+
+git branch <branch name>
+creates a new branch
+
+git checkout -b <branch name>
+Crear una nueva rama y cambiar a ella
+
+git branch -m <branch name>
+para renombrar la rama en la que estoy
+
+git checkout <branch name>
+switches to a different branch
+
+————
+
+Reutilizando algunos comandos anteriores por ejemplo “git log” puedo sacar eh commit hash(id del commit) para revisar un commit
+usando:
+git show <commit hash>
+podemos ver los detalles del commit, pero si fue muy grande puede tirar demasiada data
+
+usando:
+git show —name-only <commit hash>
+podemos ver los cambios con solo los nombres de los archivos afectados
+
+git reflog 
+podemos ver todos los commits de todas las ramas
+
+
+————
+bueno, al hacer un push tenemos que asegurarnos de que la rama ya haya sido seteado, es decir necesitas establecer la rama remota como upstream para tu rama main, para esto necesitamos este código: git push --set-upstream origin main
+este nos va a pedir el nombre de usuario git y un password, en el cual utilizaremos un token en su lugar 
+
+(ver con chatgpt mas sobre esto, por ejemplo usar Git Credential Manager)
+————
+
+entonces, cuando hacemos un push
+tenemos que usar: 
+git push --set-upstream origin <nombredelabrunch>
+cuando se hace un push de esa rama por primera vez (no está en el repositorio online)
+LUEGO
+git push
+ ya basta cuando estas parado en la branch
+
+Y aunque tenemos: git push --all origin que empujará todas las ramas locales al repositorio remoto, no configurará automáticamente el upstream para cada rama
+
+El comando git branch --set-upstream-to se utiliza para configurar la rama de seguimiento (upstream) para una rama local. Esto es útil para que Git sepa a qué rama remota debe empujar y desde cuál debe jalar los cambios.
+
+——
+
+si quiero hacer una bajada de repositorio local en mi misma pc pero diferente ruta:
+
+
+git clone <repository link> new Repository 
+(baja todas las branchs)
+
+Con esto puedo hacer un pull para bajar los datos a un nuevo repositorio, trabajar en el repositorio y luego hacer un push. Volver al repositorio anterior en mi pc y hacer un pull, descargando la data que subi desde el otro repositorio local
+
